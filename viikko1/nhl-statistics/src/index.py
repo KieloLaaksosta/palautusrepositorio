@@ -1,5 +1,4 @@
-from statistics_service import StatisticsService
-from statistics_service import PlayerReader
+from statistics_service import StatisticsService, PlayerReader
 
 def main():
     stats = StatisticsService(
