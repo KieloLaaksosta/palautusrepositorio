@@ -14,7 +14,7 @@ def main():
     print("Players from FIN:")
 
     finnish_players = [p for p in players if p.nationality == "FIN"]
-    for p in finnish_players:
+    for p in sorted(finnish_players, key= lambda p: -p.assists - p.goals):
         print(p)
         
 
