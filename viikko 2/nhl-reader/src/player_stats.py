@@ -11,3 +11,9 @@ class PlayerStats:
         filtered_players.sort(key= lambda p: -p.get_score())
 
         return filtered_players
+
+    def top_scorers_by_team(self, team):
+        filtered_players = [p for p in self._players if p.team == team]
+        filtered_players.sort(key=lambda p: -p.get_score())
+
+        return filtered_players

@@ -40,8 +40,12 @@ def get_nationality():
 
     return nationality
 
-def print_player(players, season, nationality):
-    rprint(f"\n[bold] Season {season} players from {nationality} [/bold]")
+def get_team():
+    rprint("\nTeam [magenta](leave blank to choose nationality)[/magenta]: ")
+    return input().strip().upper()
+
+def print_player(players, season, filter_name, filter_value):
+    rprint(f"\n[bold] Season {season} players from {filter_name} {filter_value} [/bold]")
 
     table = Table(show_header=True, header_style="bold")
     table.add_column("Name", style="cyan", width=22)
@@ -61,6 +65,20 @@ def print_player(players, season, nationality):
 
     rprint(table)
 
+def get_filtered_players(stats):
+    team = get_team()
+
+    if team:
+        return stats.top_scorers_by_team(team), "team", team
+
+    nationality = get_nationality()
+    if nationality == "ALL":
+        players = stats.top_scorers()
+    else:
+        players = stats.top_scorers_by_nationality(nationality)
+
+    return players, "nationality", nationality
+
 def main():
     season = get_season()
 
@@ -68,14 +86,8 @@ def main():
     stats = PlayerStats(get_players(url))
 
     while True:
-        nationality = get_nationality()
-
-        if nationality != "ALL":
-            players = stats.top_scorers_by_nationality(nationality)
-        else:
-            players = stats.top_scorers()
-
-        print_player(players, season, nationality)
+        players, filter_name, filter_value = get_filtered_players(stats)
+        print_player(players, season, filter_name, filter_value)
 
 if __name__ == "__main__":
     main()
