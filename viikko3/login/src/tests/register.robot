@@ -13,6 +13,13 @@ Register With Valid Username And Password
     Click  button >> text=Register
     Register Should Succeed
 
+Register With Password Confirmation That Does Not Match
+    Set Username  passwordmismatch
+    Set Password  salasana1234
+    Set Password Confirmation  toinen1234
+    Click  button >> text=Register
+    Register Should Fail With Message  password confirmation mismatch
+
 Register With Too Short Username And Valid Password
     Set Username  op
     Set Password  nullnull95
@@ -27,6 +34,34 @@ Register With Valid Username And Too Short Password
     Click  button >> text=Register
     Register Should Fail With Message  Password too short must be at least 8 characters
 
+Register With Password Containing Numbers
+    Set Username  passwordnumbers
+    Set Password  kalle123
+    Set Password Confirmation  kalle123
+    Click  button >> text=Register
+    Register Should Succeed
+
+Register With Password Containing Special Characters
+    Set Username  passwordspecial
+    Set Password  kalle#abc
+    Set Password Confirmation  kalle#abc
+    Click  button >> text=Register
+    Register Should Succeed
+
+Register With Password Containing Only Lowercase Letters
+    Set Username  passwordlowercase
+    Set Password  kallekalle
+    Set Password Confirmation  kallekalle
+    Click  button >> text=Register
+    Register Should Fail With Message  Password must contain at least one non-letter character
+
+Register With Password Containing Only Uppercase And Lowercase Letters
+    Set Username  passwordmixedcase
+    Set Password  KalleKalle
+    Set Password Confirmation  KalleKalle
+    Click  button >> text=Register
+    Register Should Fail With Message  Password must contain at least one non-letter character
+
 Register With Username That Is Already In Use
     Set Username  kalle
     Set Password  kalle123
@@ -40,8 +75,8 @@ Register Should Succeed
 
 Register Should Fail With Message
     [Arguments]  ${message}
-    Register Page Should Be Open
     Get Text  body  *=  ${message}
+    Register Page Should Be Open
 
 Set Username
     [Arguments]  ${username}

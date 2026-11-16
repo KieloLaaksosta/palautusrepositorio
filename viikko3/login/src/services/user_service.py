@@ -44,6 +44,10 @@ class UserService:
             raise UserInputError("Username too short must be at least 3 characters")
         if len(password) < 8:
             raise UserInputError("Password too short must be at least 8 characters")
+        if password.isalpha():
+            raise UserInputError(
+                "Password must contain at least one non-letter character"
+            )
         if password != password_confirmation:
             raise UserInputError("password confirmation mismatch")
 
