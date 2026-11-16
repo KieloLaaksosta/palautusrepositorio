@@ -1,0 +1,5 @@
+Hyvä daily scrum levittää tiimissä läpinäkyvyyttä ja ratkaisee välittömät ongelmat nopeasti. Esimerksi jos tiimiläinen tarvitsee apua jonkun osan koodia kanssaa pitäisi sopia, miten asia hoidetaan konkreettisesti eikä vain jättää tiimiläistä oman onnensa nojaan tai lupailla tyhjiä. Daily jossa ei tule ongelmia esille ei myöskään ole välttämättä onnistunut. Voi olla että sprintti on sujunut hyvin eikä suurempia raportoitavia ongelmia ole, mutta voi olla myös että tiimiläset eivät vain uskalla mainita ongelmistaa. Jälkimmäisessä tapauksessa sprintin heikkous tulee esille sprintin lopussa jolloin ongelmat viimeistään paljastuvat. 
+
+Hyvä daily voi jopa vahvistaa tiimin psykologista turvallisuutta, kun tiimiläiset saavat positiivisa kokemuksia sosiaalistien riskien ottamisesta. Lisäksi yhteinen valitus ja intoilu tuokio voi antaa tiimiläisille vertaistukea haasteiden sietämiseen ja parantaa tiimin mielialaa.
+
+Hyvässä dailyssa jokainen tiimiläinen pääsee puhumaan ja uskaltaa puhua. Hyvään dailyyn kuuluu sekä ongelmien että onnistumisten jakaminen sekä yleinen läpinäkyvyyden levittäminen 
