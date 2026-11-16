@@ -1,0 +1,3 @@
+Agentti generoi ohjetiedoston juurihakemistoon niin, että se koski kaikkia viikkoja. Annoin tämän kuitenkin olla. Ohje oli yllättävän lyhyt. Agentti listasi vain testaamiseen ja koodin ajamiseen tarvittavat komennot. Agnetti oli myös userstoryjen kanssa hyvin innokas. Agentti kyllä kirjoitti testit ennen toeuttamista mutta se päätti kirjoittaa samalla kehotteella myös toteutuksen heti perään. Lisäksi agentti jostain syystä halusi diffata tiedostoja aivan jatkuvasti. Lopuksi kun testin itse niin testit ja toteutus oli tehty oikein ja testit hajosivat kun koodi rikottiin.
+´
+Opin että agenttien ohjaaminen on hyvin haastavaa sillä ne saattavat helposti alkaa tehdä laajempia muutoksia kuin pyysit.
