@@ -30,7 +30,6 @@ class TestKauppa(unittest.TestCase):
         self.pankki_mock.tilisiirto.assert_called()
 
     def test_maksettaessa_ostos_pankin_metodia_tilisiirto_kutsutaan_oikein(self):
-
         self.kauppa.aloita_asiointi()
         self.kauppa.lisaa_koriin(1)
         self.kauppa.tilimaksu("pekka", "12345")
@@ -55,7 +54,6 @@ class TestKauppa(unittest.TestCase):
 
     def test_maksettaessa_ostos_pankin_metodia_tilisiirto_kutsutaan_oikein_loppuneella_tuotteella(self):
         self.saldot[2] = 0
-        self.tuotteet[2] = Tuote(1, "makkara", 15)
 
         self.kauppa.aloita_asiointi()
         self.kauppa.lisaa_koriin(1)
@@ -64,3 +62,19 @@ class TestKauppa(unittest.TestCase):
 
         self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", self.kauppa._kaupan_tili, 5)
     
+    def test_aloita_asiointi_nollaa_hinnan(self):
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.lisaa_koriin(2)
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.tilimaksu("pekka", "12345")
+    
+        self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", self.kauppa._kaupan_tili, 5)
+        
+    def test_maksu_pyytaa_viitenumeroa(self):
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.tilimaksu("pekka", "12345")
+    
+        self.assertEqual(self.viitegeneraattori_mock.uusi.call_count, 1)
