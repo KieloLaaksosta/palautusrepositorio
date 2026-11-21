@@ -62,6 +62,16 @@ class TestKauppa(unittest.TestCase):
 
         self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", self.kauppa._kaupan_tili, 5)
     
+    def test_maksettaessa_ostos_pankin_metodia_tilisiirto_kutsutaan_kun_tuote_poistettu(self):
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.lisaa_koriin(2)
+        self.kauppa.poista_korista(1)
+        self.kauppa.tilimaksu("pekka", "12345")
+
+        self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", self.kauppa._kaupan_tili, 15)
+    
+    
     def test_aloita_asiointi_nollaa_hinnan(self):
         self.kauppa.aloita_asiointi()
         self.kauppa.lisaa_koriin(1)
