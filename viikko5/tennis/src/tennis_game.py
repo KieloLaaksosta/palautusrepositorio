@@ -43,17 +43,13 @@ class TennisGame:
             case _: raise ValueError(score)
 
     def get_score(self):
-        score = ""
-
         if self.p1_score == self.p2_score:
-            score = TennisGame._get_tie_name(self.p1_score)
+            return TennisGame._get_tie_name(self.p1_score)
         elif self.p1_score >= 4 or self.p2_score >= 4:
             score_diff = self.p1_score - self. p2_score
-            score = TennisGame._get_end_game_name(score_diff)
+            return TennisGame._get_end_game_name(score_diff)
         else:
             self.p1_score_name = TennisGame._get_score_name(self.p1_score)
             self.p2_score_name = TennisGame._get_score_name(self.p2_score)
             
-            score = f"{self.p1_score_name} - {self.p2_score_name}"
-
-        return score
+            return f"{self.p1_score_name} - {self.p2_score_name}"
