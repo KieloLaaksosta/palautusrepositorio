@@ -25,15 +25,17 @@ class TennisGame:
             return "Deuce"
       
     @classmethod  
-    def _get_end_game_name(cls, score_diff):
-        if score_diff == 1:
-            return "Advantage player1"
-        elif score_diff == -1:
-            return "Advantage player2"
-        elif score_diff >= 2:
-            return "Win for player1"
+    def _get_end_game_name(cls, p1_score, p2_score):
+        if p1_score > p2_score:
+            if p1_score == p2_score - 1:
+                return "Advantage player1"
+            else:
+                return "Win for player1"
         else:
-            return "Win for player2"
+            if p2_score == p1_score - 1:
+                return "Advantage player2"
+            else:
+                return "Win for player2"
         
     @classmethod
     def _get_score_name(cls, score):
@@ -48,8 +50,7 @@ class TennisGame:
         if self.p1_score == self.p2_score:
             return TennisGame._get_tie_name(self.p1_score)
         elif self.p1_score >= END_GAME_SCORE or self.p2_score >= END_GAME_SCORE:
-            score_diff = self.p1_score - self. p2_score
-            return TennisGame._get_end_game_name(score_diff)
+            return TennisGame._get_end_game_name(self.p1_score, self.p2_score)
         else:
             self.p1_score_name = TennisGame._get_score_name(self.p1_score)
             self.p2_score_name = TennisGame._get_score_name(self.p2_score)
