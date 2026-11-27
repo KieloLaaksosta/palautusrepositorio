@@ -11,19 +11,23 @@ class TennisGame:
         else:
             self.p2_score = self.p2_score + 1
 
+    @classmethod
+    def _get_tie_name(cls, score):
+        if score == 0:
+            return "Love-All"
+        elif score == 1:
+            return "Fifteen-All"
+        elif score == 2:
+            return "Thirty-All"
+        else:
+            return "Deuce"
+
     def get_score(self):
         score = ""
         temp_score = 0
 
         if self.p1_score == self.p2_score:
-            if self.p1_score == 0:
-                score = "Love-All"
-            elif self.p1_score == 1:
-                score = "Fifteen-All"
-            elif self.p1_score == 2:
-                score = "Thirty-All"
-            else:
-                score = "Deuce"
+            score = TennisGame._get_tie_name(self.p1_score)
         elif self.p1_score >= 4 or self.p2_score >= 4:
             minus_result = self.p1_score - self. p2_score
 
