@@ -1,4 +1,6 @@
-class TennisGame:
+END_GAME_SCORE = 4
+
+class TennisGame:        
     def __init__(self, player1_name, player2_name):
         self.p1_name = player1_name
         self.p2_name = player2_name
@@ -45,7 +47,7 @@ class TennisGame:
     def get_score(self):
         if self.p1_score == self.p2_score:
             return TennisGame._get_tie_name(self.p1_score)
-        elif self.p1_score >= 4 or self.p2_score >= 4:
+        elif self.p1_score >= END_GAME_SCORE or self.p2_score >= END_GAME_SCORE:
             score_diff = self.p1_score - self. p2_score
             return TennisGame._get_end_game_name(score_diff)
         else:
