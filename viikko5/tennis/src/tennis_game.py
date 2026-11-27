@@ -32,32 +32,28 @@ class TennisGame:
             return "Win for player1"
         else:
             return "Win for player2"
+        
+    @classmethod
+    def _get_score_name(cls, score):
+        match score:
+            case 0: return "Love"
+            case 1: return "Fifteen"
+            case 2: return "Thirty"
+            case 3: return "Forty"
+            case _: raise ValueError(score)
 
     def get_score(self):
         score = ""
-        temp_score = 0
 
         if self.p1_score == self.p2_score:
             score = TennisGame._get_tie_name(self.p1_score)
-
         elif self.p1_score >= 4 or self.p2_score >= 4:
             score_diff = self.p1_score - self. p2_score
             score = TennisGame._get_end_game_name(score_diff)
         else:
-            for i in range(1, 3):
-                if i == 1:
-                    temp_score = self.p1_score
-                else:
-                    score = score + "-"
-                    temp_score = self.p2_score
-
-                if temp_score == 0:
-                    score = score + "Love"
-                elif temp_score == 1:
-                    score = score + "Fifteen"
-                elif temp_score == 2:
-                    score = score + "Thirty"
-                elif temp_score == 3:
-                    score = score + "Forty"
+            self.p1_score_name = TennisGame._get_score_name(self.p1_score)
+            self.p2_score_name = TennisGame._get_score_name(self.p2_score)
+            
+            score = f"{self.p1_score_name} - {self.p2_score_name}"
 
         return score
