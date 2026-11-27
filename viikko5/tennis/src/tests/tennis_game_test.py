@@ -55,6 +55,25 @@ def play_game(p1_points, p2_points):
 
 
 class TestTennis(unittest.TestCase):
+    def test_scores_use_player_names(self):
+        game = TennisGame("Anna", "Mikko")
+        game.won_point("Anna")
+        self.assertEqual("Fifteen-Love", game.get_score())
+
+        for _ in range(3):
+            game.won_point("Anna")
+        self.assertEqual("Win for Anna", game.get_score())
+
+        game = TennisGame("Anna", "Mikko")
+        for _ in range(4):
+            game.won_point("Mikko")
+        self.assertEqual("Win for Mikko", game.get_score())
+
+    def test_unknown_player_name_is_rejected(self):
+        game = TennisGame("Anna", "Mikko")
+        with self.assertRaises(ValueError):
+            game.won_point("Unknown")
+
     def test_score(self):
         for test_case in test_cases:
             (p1_points, p2_points, score) = test_case

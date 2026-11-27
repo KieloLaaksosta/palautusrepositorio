@@ -10,8 +10,10 @@ class TennisGame:
     def won_point(self, player_name):
         if player_name == self.p1_name:
             self.p1_score = self.p1_score + 1
-        else:
+        elif player_name == self.p2_name:
             self.p2_score = self.p2_score + 1
+        else:
+            raise ValueError(f"Unknown player: {player_name}")
 
     @classmethod
     def _get_tie_name(cls, score):
@@ -25,17 +27,17 @@ class TennisGame:
             return "Deuce"
       
     @classmethod  
-    def _get_end_game_name(cls, p1_score, p2_score):
+    def _get_end_game_name(cls, p1_score, p2_score, p1_name, p2_name):
         if p1_score > p2_score:
             if p1_score == p2_score + 1:
-                return "Advantage player1"
+                return f"Advantage {p1_name}"
             else:
-                return "Win for player1"
+                return f"Win for {p1_name}"
         else:
             if p2_score == p1_score + 1:
-                return "Advantage player2"
+                return f"Advantage {p2_name}"
             else:
-                return "Win for player2"
+                return f"Win for {p2_name}"
         
     @classmethod
     def _get_score_name(cls, score):
@@ -50,7 +52,9 @@ class TennisGame:
         if self.p1_score == self.p2_score:
             return TennisGame._get_tie_name(self.p1_score)
         elif self.p1_score >= END_GAME_SCORE or self.p2_score >= END_GAME_SCORE:
-            return TennisGame._get_end_game_name(self.p1_score, self.p2_score)
+            return TennisGame._get_end_game_name(
+                self.p1_score, self.p2_score, self.p1_name, self.p2_name
+            )
         else:
             self.p1_score_name = TennisGame._get_score_name(self.p1_score)
             self.p2_score_name = TennisGame._get_score_name(self.p2_score)
